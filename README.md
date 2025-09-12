@@ -1,5 +1,5 @@
 
-#  Income Spending Survey Tool  
+#  Income Spending Survey   
 
 A **Flask web application** for collecting and analyzing user income and spending data, developed to support **healthcare product launch analysis**.  
 
