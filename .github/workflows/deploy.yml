@@ -1,0 +1,48 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.EC2_SSH_KEY }}
+        known_hosts: |
+          ${{ secrets.EC2_HOST }} $(ssh-keyscan -H ${{ secrets.EC2_HOST }} 2>/dev/null)
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd /tmp
+          rm -rf income-spending-survey
+          git clone https://github.com/${{ github.repository }}.git income-spending-survey
+          cd income-spending-survey
+          chmod +x scripts/deploy.sh
+          sudo ./scripts/deploy.sh
+          
+          
+    - name: Verify deployment
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          sudo systemctl status income-survey.service --no-pager | head -5
+          sudo systemctl status nginx --no-pager | head -5
+          sudo systemctl status mongodb --no-pager | head -5
+          python3 --version
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:5000 || echo "Application not responding"

@@ -1,0 +1,19 @@
+[Unit]
+Description=Gunicorn instance to serve income survey app
+After=network.target
+After=mongod.service
+Requires=mongod.service
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/income-spending-survey
+Environment="PATH=/home/ubuntu/income-spending-survey/venv/bin"
+ExecStart=/home/ubuntu/income-spending-survey/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+
+Restart=always
+RestartSec=5
+Environment="PYTHONPATH=/home/ubuntu/income-spending-survey"
+
+[Install]
+WantedBy=multi-user.target

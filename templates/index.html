@@ -1,0 +1,392 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Income Spending Survey</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            padding: 20px;
+            background-color: #0b0c5c;
+        }
+        .container {
+            background-color: rgb(244, 240, 240);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.918);
+        }
+        h1 {
+            color: #19242e;
+            text-align: center;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #181f27;
+        }
+        input, select { 
+            padding: 10px; 
+            width: 100%; 
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .expense-category { 
+            margin-bottom: 15px; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        button { 
+            background-color: #3498db; 
+            color: white; 
+            padding: 15px 25px; 
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Income Spending Survey</h1>
+        <p>Please help us understand spending habits by completing this short survey.</p>
+        
+        <form action="/submit" method="post">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="18" max="100" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other/Prefer not to say</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="total_income">Total Monthly Income ($):</label>
+                <input type="number" id="total_income" name="total_income" step="0.01" min="0" required>
+            </div>
+            
+            <h3>Monthly Expenses ($):</h3>
+            
+            <div class="expense-category">
+                <label for="utilities">Utilities (electricity, water, gas):</label>
+                <input type="number" id="utilities" name="utilities" step="0.01" min="0" value="0">
+            </div>
+            
+            <div class="expense-category">
+                <label for="entertainment">Entertainment (dining out, movies, hobbies):</label>
+                <input type="number" id="entertainment" name="entertainment" step="0.01" min="0" value="0">
+            </div>
+            
+            <div class="expense-category">
+                <label for="school_fees">School/Education Fees:</label>
+                <input type="number" id="school_fees" name="school_fees" step="0.01" min="0" value="0">
+            </div>
+            
+            <div class="expense-category">
+                <label for="shopping">Shopping (clothing, personal items):</label>
+                <input type="number" id="shopping" name="shopping" step="0.01" min="0" value="0">
+            </div>
+            
+            <div class="expense-category">
+                <label for="healthcare">Healthcare (medicines, doctor visits):</label>
+                <input type="number" id="healthcare" name="healthcare" step="0.01" min="0" value="0">
+            </div>
+            
+            <button type="submit">Submit Survey</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Spending Survey</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            padding: 20px;
+            background: linear-gradient(135deg, #0b0c5c 0%, #1a237e 50%, #283593 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background-color: rgb(255, 255, 255);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #19242e;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input, select { 
+            padding: 12px; 
+            width: 100%; 
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        .expense-category { 
+            margin-bottom: 15px; 
+            padding: 15px; 
+            border: 2px solid #e3e3e3; 
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s ease;
+        }
+        .expense-category:hover {
+            transform: translateY(-2px);
+            border-color: #3498db;
+        }
+        button { 
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+            color: white; 
+            padding: 16px 25px; 
+            border: none; 
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .total-display {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 2px dashed #3498db;
+        }
+        .required {
+            color: #e74c3c;
+        }
+        .info-text {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            body {
+                margin: 20px;
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Income Spending Survey</h1>
+        <p class="subtitle">Help us understand spending habits to improve financial wellness</p>
+        
+        <form id="surveyForm" action="/submit" method="post">
+            <div class="form-group">
+                <label for="age">Age: <span class="required">*</span></label>
+                <input type="number" id="age" name="age" min="18" max="100" required
+                       placeholder="Enter your age">
+                <div class="info-text">Must be 18 years or older</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender: <span class="required">*</span></label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="non-binary">Non-binary</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="total_income">Total Monthly Income ($): <span class="required">*</span></label>
+                <input type="number" id="total_income" name="total_income" step="0.01" min="0" required
+                       placeholder="0.00" oninput="calculateBalance()">
+                <div class="info-text">Your total monthly income before taxes</div>
+            </div>
+            
+            <h3>Monthly Expenses ($):</h3>
+            <div class="info-text">Enter 0 if no expenses in a category</div>
+            
+            <div class="expense-category">
+                <label for="utilities">Utilities (electricity, water, gas):</label>
+                <input type="number" id="utilities" name="utilities" step="0.01" min="0" value="0"
+                       placeholder="0.00" oninput="calculateBalance()">
+            </div>
+            
+            <div class="expense-category">
+                <label for="entertainment">Entertainment (dining out, movies, hobbies):</label>
+                <input type="number" id="entertainment" name="entertainment" step="0.01" min="0" value="0"
+                       placeholder="0.00" oninput="calculateBalance()">
+            </div>
+            
+            <div class="expense-category">
+                <label for="school_fees">School/Education Fees:</label>
+                <input type="number" id="school_fees" name="school_fees" step="0.01" min="0" value="0"
+                       placeholder="0.00" oninput="calculateBalance()">
+            </div>
+            
+            <div class="expense-category">
+                <label for="shopping">Shopping (clothing, personal items):</label>
+                <input type="number" id="shopping" name="shopping" step="0.01" min="0" value="0"
+                       placeholder="0.00" oninput="calculateBalance()">
+            </div>
+            
+            <div class="expense-category">
+                <label for="healthcare">Healthcare (medicines, doctor visits):</label>
+                <input type="number" id="healthcare" name="healthcare" step="0.01" min="0" value="0"
+                       placeholder="0.00" oninput="calculateBalance()">
+            </div>
+
+            <div class="total-display" id="balanceDisplay">
+                Estimated Monthly Balance: $0.00
+            </div>
+            
+            <button type="submit" id="submitBtn">Submit Survey</button>
+        </form>
+    </div>
+
+    <script>
+        function calculateBalance() {
+            const income = parseFloat(document.getElementById('total_income').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+            const schoolFees = parseFloat(document.getElementById('school_fees').value) || 0;
+            const shopping = parseFloat(document.getElementById('shopping').value) || 0;
+            const healthcare = parseFloat(document.getElementById('healthcare').value) || 0;
+            
+            const totalExpenses = utilities + entertainment + schoolFees + shopping + healthcare;
+            const balance = income - totalExpenses;
+            
+            const balanceDisplay = document.getElementById('balanceDisplay');
+            balanceDisplay.textContent = `Estimated Monthly Balance: $${balance.toFixed(2)}`;
+            
+            // Change color based on balance
+            if (balance < 0) {
+                balanceDisplay.style.backgroundColor = '#ffe6e6';
+                balanceDisplay.style.borderColor = '#e74c3c';
+                balanceDisplay.style.color = '#c0392b';
+            } else if (balance > 0) {
+                balanceDisplay.style.backgroundColor = '#e6f7e6';
+                balanceDisplay.style.borderColor = '#27ae60';
+                balanceDisplay.style.color = '#27ae60';
+            } else {
+                balanceDisplay.style.backgroundColor = '#e8f4fc';
+                balanceDisplay.style.borderColor = '#3498db';
+                balanceDisplay.style.color = '#2c3e50';
+            }
+        }
+
+        // Form validation
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            const income = parseFloat(document.getElementById('total_income').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+            const schoolFees = parseFloat(document.getElementById('school_fees').value) || 0;
+            const shopping = parseFloat(document.getElementById('shopping').value) || 0;
+            const healthcare = parseFloat(document.getElementById('healthcare').value) || 0;
+            
+            const totalExpenses = utilities + entertainment + schoolFees + shopping + healthcare;
+            
+            if (totalExpenses > income * 2) {
+                if (!confirm('Your expenses seem unusually high compared to your income. Are you sure you want to submit?')) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Initialize balance calculation on page load
+        document.addEventListener('DOMContentLoaded', calculateBalance);
+    </script>
+</body>
+</html>
