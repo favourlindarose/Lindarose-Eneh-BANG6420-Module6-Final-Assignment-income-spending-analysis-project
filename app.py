@@ -38,12 +38,12 @@ try:
     client.server_info()  # Force connection test
     db = client['user_data_db']
     collection = db['users']
-    print(f"✅ Successfully connected to MongoDB Atlas with SSL")
+    print(f" Successfully connected to MongoDB Atlas with SSL")
     
 except Exception as e:
-    print(f"❌ Could not connect to MongoDB Atlas: {e}")
+    print(f" Could not connect to MongoDB Atlas: {e}")
     collection = None
-    print("📂 Falling back to CSV storage")
+    print(" Falling back to CSV storage")
 
 @app.route('/')
 def index():
@@ -82,9 +82,9 @@ def submit():
     if collection is not None:
         try:
             collection.insert_one(user_data)
-            print("✅ Data saved to MongoDB")
+            print(" Data saved to MongoDB")
         except Exception as e:
-            print(f"❌ Error saving to MongoDB: {e}")
+            print(f" Error saving to MongoDB: {e}")
             save_to_csv(user_data)
     else:
         save_to_csv(user_data)
@@ -139,9 +139,9 @@ def export_data():
         try:
             all_data = collection.find()
             export_to_csv(all_data)
-            return "✅ Data exported to user_data.csv"
+            return " Data exported to user_data.csv"
         except Exception as e:
-            return f"❌ MongoDB error: {e}. Data is being saved to CSV."
+            return f" MongoDB error: {e}. Data is being saved to CSV."
     else:
         return "ℹ Data is being saved directly to CSV (user_data.csv)"
 
@@ -174,7 +174,7 @@ def get_data():
             if mongo_data:
                 return mongo_data
         except Exception as e:
-            print(f"❌ Error retrieving data from MongoDB: {e}")
+            print(f" Error retrieving data from MongoDB: {e}")
 
     csv_file = 'user_data.csv'
     if os.path.exists(csv_file):
@@ -194,7 +194,7 @@ def get_data():
                     }
                 })
         except Exception as e:
-            print(f"❌ Error reading CSV file: {e}")
+            print(f" Error reading CSV file: {e}")
 
     return data
 
@@ -266,7 +266,7 @@ def generate_visualizations():
         plt.close(fig)
 
     except Exception as e:
-        print(f"❌ Error generating visualizations: {e}")
+        print(f"Error generating visualizations: {e}")
 
     return plot_urls
 

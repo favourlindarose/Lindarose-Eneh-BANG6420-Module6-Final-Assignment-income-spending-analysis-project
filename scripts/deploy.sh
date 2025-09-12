@@ -101,9 +101,9 @@ sudo systemctl status income-survey.service --no-pager -l
 # Check if the application is listening on the expected port
 echo "Checking if application is listening on port 5000..."
 if sudo netstat -tulpn | grep :5000; then
-    echo "✅ Application is successfully listening on port 5000"
+    echo "Application is successfully listening on port 5000"
 else
-    echo "❌ WARNING: Application is not listening on port 5000"
+    echo "WARNING: Application is not listening on port 5000"
     echo "Checking application logs..."
     sudo journalctl -u income-survey.service --no-pager -n 20
 fi
@@ -125,20 +125,20 @@ try:
         tlsCAFile=certifi.where()
     )
     client.server_info()
-    print('✅ MongoDB Atlas connection successful with SSL!')
+    print('MongoDB Atlas connection successful with SSL!')
 except Exception as e:
-    print(f'❌ MongoDB Atlas connection failed: {e}')
+    print(f'MongoDB Atlas connection failed: {e}')
     # Test without SSL as fallback
     try:
         client = MongoClient('mongodb+srv://kingsamuel412_db_user:5YmyvqhPpiksB4QJ@favour.k47oqe4.mongodb.net/?retryWrites=true&w=majority&appName=favour&tls=false', serverSelectionTimeoutMS=3000)
         client.server_info()
-        print('✅ MongoDB Atlas connection successful without SSL!')
+        print('MongoDB Atlas connection successful without SSL!')
     except Exception as e2:
-        print(f'❌ MongoDB Atlas connection also failed without SSL: {e2}')
+        print(f' MongoDB Atlas connection also failed without SSL: {e2}')
 "; then
-    echo "✅ MongoDB Atlas connection test completed"
+    echo " MongoDB Atlas connection test completed"
 else
-    echo "❌ MongoDB Atlas connection test failed"
+    echo " MongoDB Atlas connection test failed"
 fi
 
 # Restore the cnf-update-db script if we moved it
